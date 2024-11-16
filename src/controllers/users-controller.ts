@@ -21,7 +21,7 @@ class UsersController {
             throw new AppError("User with same email already exist")
         }
 
-        const hashedPassword = await hash(password, 8)
+        const hashedPassword = await hash(password, 8) // criptografa a senha
 
         const user = await prisma.user.create({
             data: {
@@ -33,7 +33,7 @@ class UsersController {
 
         const { password: _, ...userWithoutPassword } = user
 
-        return response.status(401).json(userWithoutPassword)
+        return response.status(201).json(userWithoutPassword)
     }
 }
 
